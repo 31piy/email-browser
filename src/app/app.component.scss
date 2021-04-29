@@ -1,0 +1,15 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  width: 60vw;
+  height: 80vh;
+  margin: 0 auto;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0px 20px 37px 0px #ccc;
+}

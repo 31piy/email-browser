@@ -1,0 +1,27 @@
+:host {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+app-email-search-bar {
+  flex: 0;
+}
+
+.emails {
+  display: flex;
+  flex: 1;
+
+  app-email-list {
+    flex: 1 0 35%;
+  }
+
+  app-email-preview {
+    flex: 1 1 65%;
+  }
+}
+
+app-list-paginator {
+  flex: 0;
+}
