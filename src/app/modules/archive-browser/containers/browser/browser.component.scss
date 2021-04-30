@@ -1,17 +1,19 @@
 :host {
-  height: 100%;
-
   display: flex;
   flex-direction: column;
 }
 
+app-email-list {
+  border-right: 1px solid #eee;
+}
+
 app-email-search-bar {
-  flex: 0;
+  flex: 0 0 3rem;
 }
 
 .emails {
   display: flex;
-  flex: 1;
+  overflow-y: auto;
 
   app-email-list {
     flex: 1 0 35%;
@@ -23,5 +25,6 @@ app-email-search-bar {
 }
 
 app-list-paginator {
-  flex: 0;
+  border-top: 1px solid #eee;
+  flex: 0 0 3rem;
 }

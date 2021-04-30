@@ -10,3 +10,33 @@ html,
 body {
   margin: 0;
 }
+
+.h-100 {
+  height: 100%
+}
+
+.text-muted {
+  color: #aaa;
+}
+
+.text-small {
+  font-size: small;
+}
+
+.text-width-lg {
+  max-width: 15rem;
+}
+
+.text-width-md {
+  max-width: 10rem;
+}
+
+.text-width-sm {
+  max-width: 5rem;
+}
+
+.text-wrap {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

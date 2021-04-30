@@ -1,0 +1,46 @@
+.email-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+
+  li + li {
+    border-top: 1px solid #eee;
+  }
+}
+
+.email-summary {
+  padding: 1rem;
+  cursor: pointer;
+
+  .line {
+    display: flex;
+    align-items: center;
+
+    span + span {
+      margin-left: 0.5rem;
+    }
+
+    &.separated {
+      justify-content: space-between;
+    }
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.receipients-count {
+  padding: 0 0.25rem;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+}
+
+.email-subject {
+  flex: 1;
+}
+
+.email-body {
+  flex: 3;
+}
