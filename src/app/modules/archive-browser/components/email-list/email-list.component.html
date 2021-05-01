@@ -1,25 +1,27 @@
 <ul class="email-list list-unstyled h-100">
-  <li class="email-summary">
+  <li class="email-summary" *ngFor="let email of emails">
     <div class="line separated">
       <span class="email-sender text-width-lg text-wrap">
-        quickbrownfox@gmail.com
+        {{ email.from }}
       </span>
       <span>
-        <span class="receipients-count text-muted text-small" title="Recipients">
-          → 2
+        <span
+          class="receipients-count text-muted text-small"
+          title="Recipients">
+          → {{ email.to.length + email.bcc.length + email.cc.length }}
         </span>
         <span class="email-timestamp text-muted text-small">
-          23 Jun
+          {{ email.date | date: 'MMM d' }}
         </span>
       </span>
     </div>
 
     <div class="line text-muted text-small">
-      <span class="email-subject text-wrap">
-        a really long long long subject line
+      <span class="email-subject text-wrap text-width-sm">
+        {{ email.subject || '(no subject)' }}
       </span>
-      <span class="email-body text-wrap">
-        a really long long long email body!
+      <span class="email-body text-wrap text-width-lg">
+        {{ email.body }}
       </span>
     </div>
   </li>

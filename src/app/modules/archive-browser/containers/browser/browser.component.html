@@ -1,12 +1,18 @@
 <!-- Search Bar -->
 <app-email-search-bar></app-email-search-bar>
 
-<section class="emails h-100">
-  <app-email-list></app-email-list>
-  <app-email-preview></app-email-preview>
-</section>
+<ng-container *ngIf="!loading; else loader">
+  <section class="emails h-100">
+    <app-email-list [emails]="emails$ | async"></app-email-list>
+    <app-email-preview></app-email-preview>
+  </section>
 
-<section class="footer">
-  <app-list-paginator></app-list-paginator>
-  <app-list-stats></app-list-stats>
-</section>
+  <section class="footer">
+    <app-list-paginator></app-list-paginator>
+    <app-list-stats></app-list-stats>
+  </section>
+</ng-container>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
