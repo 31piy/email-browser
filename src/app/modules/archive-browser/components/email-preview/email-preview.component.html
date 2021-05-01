@@ -1,1 +1,29 @@
-<p>email-preview works!</p>
+<div class="email-preview h-100">
+  <span class="text-small text-muted">Jun 23, 2021 08:30PM</span>
+
+  <section class="email-header">
+    <h2 class="email-subject">A really long long long subject line</h2>
+    <h4 class="email-sender">k.alllen@enron.com</h4>
+
+    <ul class="email-receipients text-small text-muted">
+      <li class="line">
+        <span>to:</span>
+        <span>abc@gmail.com, xyz@hello.com, 8402idjkl@hjakh.com</span>
+      </li>
+
+      <li class="line">
+        <span>cc:</span>
+        <span>abc@gmail.com, xyz@hello.com, 8402idjkl@hjakh.com</span>
+      </li>
+
+      <li class="line">
+        <span>bcc:</span>
+        <span>abc@gmail.com, xyz@hello.com, 8402idjkl@hjakh.com</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="email-body">
+    <pre class="text-small">{{ body }}</pre>
+  </section>
+</div>

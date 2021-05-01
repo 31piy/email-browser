@@ -13,19 +13,6 @@
   padding: 1rem;
   cursor: pointer;
 
-  .line {
-    display: flex;
-    align-items: center;
-
-    span + span {
-      margin-left: 0.5rem;
-    }
-
-    &.separated {
-      justify-content: space-between;
-    }
-  }
-
   &:hover {
     background-color: #eee;
   }

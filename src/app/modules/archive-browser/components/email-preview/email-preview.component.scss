@@ -1,0 +1,33 @@
+:host {
+  overflow: auto;
+}
+
+.email-preview {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.email-sender {
+  margin-bottom: 0.25rem;
+}
+
+.email-receipients {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .line {
+    span:first-child {
+      flex: 0 0 2rem;
+      text-align: right;
+    }
+  }
+}
+
+.email-body {
+  margin-top: 1rem;
+
+  pre {
+    white-space: pre-wrap;
+  }
+}
