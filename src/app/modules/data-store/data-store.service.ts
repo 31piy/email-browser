@@ -84,20 +84,29 @@ export class DataStoreService {
         let result = emails;
 
         if (params.searchToken) {
+          const normalizedToken = params.searchToken.toLocaleLowerCase();
+
           result = result.filter(
             (email) =>
-              email.subject.includes(params.searchToken) ||
-              email.body.includes(params.searchToken)
+              email.subject.toLocaleLowerCase().includes(normalizedToken) ||
+              email.body.toLocaleLowerCase().includes(normalizedToken)
           );
         }
+
+        const pageSize = params.pageSize || 10;
+        const pageNumber = params.pageNumber || 1;
+        const totalPages = Math.ceil(result.length / pageSize);
+        const startIndex = pageSize * (pageNumber - 1);
+
+        result = result.slice(startIndex, startIndex + pageSize);
 
         return {
           emails: result,
           summary: {
             totalResults: this.emails.length,
-            pageNumber: 0,
-            pageSize: 0,
-            totalPages: 0
+            pageNumber,
+            pageSize,
+            totalPages,
           },
         };
       })

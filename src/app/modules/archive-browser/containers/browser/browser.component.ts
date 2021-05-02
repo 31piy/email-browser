@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import { DataStoreService, Email } from 'src/app/modules/data-store';
 
 @Component({
@@ -14,8 +14,20 @@ export class BrowserComponent implements OnInit, OnDestroy {
    */
   loading = false;
 
+  /**
+   * Subject to store the list of emails.
+   */
   emails$ = new BehaviorSubject<Email[]>([]);
 
+  /**
+   * Reference to the currently selected email.
+   */
+  selectedEmail: Email = null;
+
+  /**
+   * The collection of subscriptions created inside this component. Useful for
+   * cleaning up subscriptions on component destroy.
+   */
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -29,7 +41,10 @@ export class BrowserComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.dataStore
         .getAll({})
-        .pipe(finalize(() => (this.loading = false)))
+        .pipe(
+          tap((resp) => console.log(resp)),
+          finalize(() => (this.loading = false))
+        )
         .subscribe((resp) => {
           this.emails$.next(resp.emails);
           this.cdr.detectChanges();
@@ -43,5 +58,14 @@ export class BrowserComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     }
+  }
+
+  /**
+   * Callback for the "itemSelected" event on the email list component.
+   *
+   * @param email The email object which was selected.
+   */
+  onEmailSelected(email: Email): void {
+    this.selectedEmail = email;
   }
 }

@@ -4,14 +4,24 @@
   li + li {
     border-top: 1px solid #eee;
   }
+
+  .line + .line {
+    margin-top: 0.25rem;
+  }
 }
 
 .email-summary {
   padding: 1rem;
   cursor: pointer;
+  border: 1px solid transparent;
 
-  &:hover {
+  &:hover,
+  &.selected {
     background-color: #eee;
+  }
+
+  &.selected {
+    border: 1px solid #aaa !important;
   }
 }
 

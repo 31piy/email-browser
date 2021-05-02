@@ -3,8 +3,16 @@
 
 <ng-container *ngIf="!loading; else loader">
   <section class="emails h-100">
-    <app-email-list [emails]="emails$ | async"></app-email-list>
-    <app-email-preview></app-email-preview>
+    <!-- List of emails -->
+    <app-email-list
+      [emails]="emails$ | async"
+      [selectedEmail]="selectedEmail"
+      (itemSelected)="onEmailSelected($event)">
+    </app-email-list>
+
+    <!-- Email preview -->
+    <app-email-preview *ngIf="selectedEmail" [email]="selectedEmail">
+    </app-email-preview>
   </section>
 
   <section class="footer">

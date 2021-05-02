@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+} from '@angular/core';
+import { Subject } from 'rxjs';
 import { Email } from 'src/app/modules/data-store';
 
 @Component({
@@ -12,4 +18,14 @@ export class EmailListComponent {
    * The list of emails.
    */
   @Input() emails: Email[];
+
+  /**
+   * The email object which should appear as selected.
+   */
+  @Input() selectedEmail: Email;
+
+  /**
+   * Event to fire when an email is selected.
+   */
+  @Output() itemSelected = new Subject<Email>();
 }

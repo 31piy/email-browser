@@ -1,5 +1,9 @@
 <ul class="email-list list-unstyled h-100">
-  <li class="email-summary" *ngFor="let email of emails">
+  <li
+    class="email-summary"
+    *ngFor="let email of emails"
+    [ngClass]="{ selected: email === selectedEmail }"
+    (click)="itemSelected.next(email)">
     <div class="line separated">
       <span class="email-sender text-width-lg text-wrap">
         {{ email.from }}
@@ -7,18 +11,19 @@
       <span>
         <span
           class="receipients-count text-muted text-small"
-          title="Recipients">
+          title="Recipients"
+        >
           → {{ email.to.length + email.bcc.length + email.cc.length }}
         </span>
         <span class="email-timestamp text-muted text-small">
-          {{ email.date | date: 'MMM d' }}
+          {{ email.date | date: "MMM d" }}
         </span>
       </span>
     </div>
 
     <div class="line text-muted text-small">
       <span class="email-subject text-wrap text-width-sm">
-        {{ email.subject || '(no subject)' }}
+        {{ email.subject || "(no subject)" }}
       </span>
       <span class="email-body text-wrap text-width-lg">
         {{ email.body }}
