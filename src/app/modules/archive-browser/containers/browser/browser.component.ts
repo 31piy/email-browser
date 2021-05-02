@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
+import { finalize, switchMap } from 'rxjs/operators';
 import {
   DataStoreService,
   Email,
-  GetAllResponse
+  GetAllResponse,
 } from 'src/app/modules/data-store';
 
 @Component({
@@ -29,6 +29,16 @@ export class BrowserComponent implements OnInit, OnDestroy {
   summary$ = new BehaviorSubject<GetAllResponse['summary']>(null);
 
   /**
+   * Subject to store the currently selected page.
+   */
+  currentPage$ = new BehaviorSubject<number>(null);
+
+  /**
+   * Subject to store the currently specified search token.
+   */
+  searchToken$ = new BehaviorSubject<string>(null);
+
+  /**
    * Reference to the currently selected email.
    */
   selectedEmail: Email = null;
@@ -39,22 +49,23 @@ export class BrowserComponent implements OnInit, OnDestroy {
    */
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private dataStore: DataStoreService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private dataStore: DataStoreService) {}
 
   ngOnInit(): void {
     this.loading = true;
 
     this.subscriptions.push(
-      this.dataStore
-        .getAll({})
-        .pipe(finalize(() => (this.loading = false)))
+      combineLatest([this.currentPage$, this.searchToken$])
+        .pipe(
+          switchMap(([page, token]) =>
+            this.dataStore
+              .getAll({ searchToken: token, pageNumber: page })
+              .pipe(finalize(() => (this.loading = false)))
+          )
+        )
         .subscribe((resp) => {
           this.emails$.next(resp.emails);
           this.summary$.next(resp.summary);
-          this.cdr.detectChanges();
         })
     );
   }

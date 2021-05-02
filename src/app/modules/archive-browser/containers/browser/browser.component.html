@@ -18,7 +18,8 @@
   <section class="footer" *ngIf="summary$ | async as summary">
     <app-list-paginator
       [currentPage]="summary.pageNumber"
-      [totalPages]="summary.totalPages">
+      [totalPages]="summary.totalPages"
+      (pageChanged)="currentPage$.next($event)">
     </app-list-paginator>
 
     <app-list-stats
