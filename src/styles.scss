@@ -52,6 +52,10 @@ body {
   &.separated {
     justify-content: space-between;
   }
+
+  &.align-start {
+    align-items: flex-start;
+  }
 }
 
 .list-unstyled {

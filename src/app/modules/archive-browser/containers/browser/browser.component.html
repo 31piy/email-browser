@@ -25,11 +25,6 @@
       [totalPages]="summary.totalPages"
       (pageChanged)="currentPage$.next($event)">
     </app-list-paginator>
-
-    <app-list-stats
-      [currentItemsCount]="(emails$ | async).length"
-      [totalItemsCount]="summary.totalResults">
-    </app-list-stats>
   </section>
 </ng-container>
 

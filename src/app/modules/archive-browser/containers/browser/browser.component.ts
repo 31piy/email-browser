@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
-import { finalize, switchMap } from 'rxjs/operators';
+import { finalize, switchMap, tap } from 'rxjs/operators';
 import {
   DataStoreService,
   Email,
@@ -52,11 +52,12 @@ export class BrowserComponent implements OnInit, OnDestroy {
   constructor(private dataStore: DataStoreService) {}
 
   ngOnInit(): void {
-    this.loading = true;
-
     this.subscriptions.push(
+      // Listen to changes in current page or search token, and refresh the
+      // emails list.
       combineLatest([this.currentPage$, this.searchToken$])
         .pipe(
+          tap(() => (this.loading = true)),
           switchMap(([page, token]) =>
             this.dataStore
               .getAll({ searchToken: token, pageNumber: page })
@@ -70,6 +71,7 @@ export class BrowserComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
+      // Listen to changes in search token and reset the selected email.
       this.searchToken$.subscribe(() => (this.selectedEmail = null))
     );
   }

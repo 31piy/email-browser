@@ -68,9 +68,12 @@ export interface GetAllResponse {
  */
 export class DataStoreService {
   /**
-   * The collection of emails in the archive.
+   * The collection of emails in the archive (sorted reverse chronologically).
    */
-  private readonly emails: Email[] = Archive;
+  private readonly emails: Email[] = Archive.sort(
+    (a: Email, b: Email) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 
   /**
    * Returns a list of all the emails matching specified criteria.

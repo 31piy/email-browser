@@ -11,17 +11,17 @@
     <h4 class="email-sender">{{ email.from }}</h4>
 
     <ul class="email-receipients list-unstyled text-small text-muted">
-      <li class="line">
+      <li class="line align-start">
         <span>to:</span>
         <span>{{ email.to | simpleList }}</span>
       </li>
 
-      <li class="line" *ngIf="email.cc?.length">
+      <li class="line align-start" *ngIf="email.cc?.length">
         <span>cc:</span>
         <span>{{ email.cc | simpleList }}</span>
       </li>
 
-      <li class="line" *ngIf="email.bcc?.length">
+      <li class="line align-start" *ngIf="email.bcc?.length">
         <span>bcc:</span>
         <span>{{ email.bcc | simpleList }}</span>
       </li>
