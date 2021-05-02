@@ -12,4 +12,9 @@ export class EmailPreviewComponent {
    * The email object.
    */
   @Input() email: Email;
+
+  /**
+   * Optional binding to pass the string to highlight.
+   */
+  @Input() highlightString: string;
 }

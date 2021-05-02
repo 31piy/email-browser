@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DataStoreModule } from '../data-store/data-store.module';
@@ -11,7 +12,7 @@ import { ListStatsComponent } from './components/list-stats/list-stats.component
 import { BrowserComponent } from './containers/browser/browser.component';
 
 @NgModule({
-  imports: [CommonModule, DataStoreModule, SharedModule],
+  imports: [CommonModule, DataStoreModule, ReactiveFormsModule, SharedModule],
   declarations: [
     BrowserComponent,
     EmailListComponent,

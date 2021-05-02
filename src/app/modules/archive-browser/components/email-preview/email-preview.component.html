@@ -1,10 +1,13 @@
 <div class="email-preview h-100">
   <span class="text-small text-muted">
-    {{ email.date | date: 'medium' }}
+    {{ email.date | date: "medium" }}
   </span>
 
   <section class="email-header">
-    <h2 class="email-subject">{{ email.subject || '(no subject)' }}</h2>
+    <h2 class="email-subject" [appHighlight]="highlightString">
+      {{ email.subject || "(no subject)" }}
+    </h2>
+
     <h4 class="email-sender">{{ email.from }}</h4>
 
     <ul class="email-receipients list-unstyled text-small text-muted">
@@ -26,6 +29,8 @@
   </section>
 
   <section class="email-body">
-    <pre class="text-small">{{ email.body }}</pre>
+    <pre class="text-small" [appHighlight]="highlightString">
+      {{ email.body }}
+    </pre>
   </section>
 </div>

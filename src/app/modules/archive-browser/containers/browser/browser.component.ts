@@ -68,6 +68,10 @@ export class BrowserComponent implements OnInit, OnDestroy {
           this.summary$.next(resp.summary);
         })
     );
+
+    this.subscriptions.push(
+      this.searchToken$.subscribe(() => (this.selectedEmail = null))
+    );
   }
 
   ngOnDestroy(): void {

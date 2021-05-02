@@ -1,5 +1,6 @@
 <!-- Search Bar -->
-<app-email-search-bar></app-email-search-bar>
+<app-email-search-bar (queryChanged)="searchToken$.next($event)">
+</app-email-search-bar>
 
 <ng-container *ngIf="!loading; else loader">
   <section class="emails h-100">
@@ -11,7 +12,10 @@
     </app-email-list>
 
     <!-- Email preview -->
-    <app-email-preview *ngIf="selectedEmail" [email]="selectedEmail">
+    <app-email-preview
+      *ngIf="selectedEmail"
+      [email]="selectedEmail"
+      [highlightString]="searchToken$ | async">
     </app-email-preview>
   </section>
 
