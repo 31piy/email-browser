@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-stats',
@@ -6,8 +6,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./list-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListStatsComponent implements OnInit {
-  constructor() {}
+export class ListStatsComponent {
+  /**
+   * The number of currently visible items.
+   */
+  @Input() currentItemsCount: number;
 
-  ngOnInit(): void {}
+  /**
+   * The number of total available items
+   */
+  @Input() totalItemsCount: number;
 }

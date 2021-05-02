@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+} from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-paginator',
@@ -6,8 +12,19 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./list-paginator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListPaginatorComponent implements OnInit {
-  constructor() {}
+export class ListPaginatorComponent {
+  /**
+   * The currently selected page.
+   */
+  @Input() currentPage: number;
 
-  ngOnInit(): void {}
+  /**
+   * The number of total pages
+   */
+  @Input() totalPages: number;
+
+  /**
+   * Event to emit whenever the page is changed.
+   */
+  @Output() pageChanged = new Subject<number>();
 }

@@ -1,13 +1,39 @@
 <div class="list-paginator">
   <div class="button-group">
-    <button type="button" title="First Page">«</button>
-    <button type="button" title="Previous Page">‹</button>
+    <button
+      type="button"
+      title="First Page"
+      [disabled]="currentPage === 1"
+      (click)="pageChanged.next(1)">
+      «
+    </button>
+
+    <button
+      type="button"
+      title="Previous Page"
+      [disabled]="currentPage === 1"
+      (click)="pageChanged.next(currentPage - 1)">
+      ‹
+    </button>
   </div>
 
-  <span class="text-small">Page 1 of 30</span>
+  <span class="text-small">Page {{ currentPage }} of {{ totalPages }}</span>
 
   <div class="button-group">
-    <button type="button" title="Next Page">›</button>
-    <button type="button" title="Last Page">»</button>
+    <button
+      type="button"
+      title="Next Page"
+      [disabled]="currentPage === totalPages"
+      (click)="pageChanged.next(currentPage + 1)">
+      ›
+    </button>
+
+    <button
+      type="button"
+      title="Last Page"
+      [disabled]="currentPage === totalPages"
+      (click)="pageChanged.next(totalPages)">
+      »
+    </button>
   </div>
 </div>

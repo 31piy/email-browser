@@ -22,8 +22,8 @@
     justify-content: center;
     border-radius: 50%;
 
-    &:hover,
-    :focus {
+    &:hover:not([disabled]),
+    :focus:not([disabled]) {
       border-color: #aaa;
     }
 

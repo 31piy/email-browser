@@ -1,7 +1,11 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
-import { DataStoreService, Email } from 'src/app/modules/data-store';
+import { finalize } from 'rxjs/operators';
+import {
+  DataStoreService,
+  Email,
+  GetAllResponse
+} from 'src/app/modules/data-store';
 
 @Component({
   selector: 'app-email-archive-browser',
@@ -18,6 +22,11 @@ export class BrowserComponent implements OnInit, OnDestroy {
    * Subject to store the list of emails.
    */
   emails$ = new BehaviorSubject<Email[]>([]);
+
+  /**
+   * Subject to store the summary of the response.
+   */
+  summary$ = new BehaviorSubject<GetAllResponse['summary']>(null);
 
   /**
    * Reference to the currently selected email.
@@ -41,12 +50,10 @@ export class BrowserComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.dataStore
         .getAll({})
-        .pipe(
-          tap((resp) => console.log(resp)),
-          finalize(() => (this.loading = false))
-        )
+        .pipe(finalize(() => (this.loading = false)))
         .subscribe((resp) => {
           this.emails$.next(resp.emails);
+          this.summary$.next(resp.summary);
           this.cdr.detectChanges();
         })
     );
@@ -58,14 +65,5 @@ export class BrowserComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     }
-  }
-
-  /**
-   * Callback for the "itemSelected" event on the email list component.
-   *
-   * @param email The email object which was selected.
-   */
-  onEmailSelected(email: Email): void {
-    this.selectedEmail = email;
   }
 }
