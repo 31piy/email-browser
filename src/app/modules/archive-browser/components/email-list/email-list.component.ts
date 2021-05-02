@@ -7,6 +7,14 @@ import {
 import { Subject } from 'rxjs';
 import { Email } from 'src/app/modules/data-store';
 
+/**
+ * Renders a list of emails.
+ *
+ * @example
+ * <app-email-list [emails]="emails" [selectedEmail]="selectedEmail"
+ *   (itemSelected)="onItemSelected($event)">
+ * </app-email-list>
+ */
 @Component({
   selector: 'app-email-list',
   templateUrl: './email-list.component.html',

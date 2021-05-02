@@ -7,6 +7,12 @@ import {
   GetAllResponse,
 } from 'src/app/modules/data-store';
 
+/**
+ * Renders an email archive browser.
+ *
+ * @example
+ * <app-email-archive-browser></app-email-archive-browser>
+ */
 @Component({
   selector: 'app-email-archive-browser',
   templateUrl: './browser.component.html',
@@ -52,9 +58,9 @@ export class BrowserComponent implements OnInit, OnDestroy {
   constructor(private dataStore: DataStoreService) {}
 
   ngOnInit(): void {
+    // Listen to changes in current page or search token, and refresh the
+    // emails list.
     this.subscriptions.push(
-      // Listen to changes in current page or search token, and refresh the
-      // emails list.
       combineLatest([this.currentPage$, this.searchToken$])
         .pipe(
           tap(() => (this.loading = true)),
@@ -70,8 +76,8 @@ export class BrowserComponent implements OnInit, OnDestroy {
         })
     );
 
+    // Listen to changes in search token and reset the selected email.
     this.subscriptions.push(
-      // Listen to changes in search token and reset the selected email.
       this.searchToken$.subscribe(() => (this.selectedEmail = null))
     );
   }

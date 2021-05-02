@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { LoaderComponent } from './components/loader/loader.component';
-import { HighlightDirective } from './directives/highlight.directive';
-import { SimpleListPipe } from './pipes/simple-list.pipe';
+import { LoaderComponent } from './components';
+import { HighlightDirective } from './directives';
+import { SimpleListPipe } from './pipes';
 
 @NgModule({
   declarations: [HighlightDirective, LoaderComponent, SimpleListPipe],

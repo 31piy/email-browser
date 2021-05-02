@@ -6,6 +6,14 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
+/**
+ * Renders a pagination bar to traverse through the email result sets.
+ *
+ * @example
+ * <app-list-paginator [currentPage]="currentPage" [totalPages]="totalPages"
+ *   (pageChanged)="onPageChanged($event)">
+ * <app-list-paginator>
+ */
 @Component({
   selector: 'app-list-paginator',
   templateUrl: './list-paginator.component.html',

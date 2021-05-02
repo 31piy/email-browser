@@ -20,6 +20,7 @@
   </section>
 
   <section class="footer" *ngIf="summary$ | async as summary">
+    <!-- Pagination bar -->
     <app-list-paginator
       [currentPage]="summary.pageNumber"
       [totalPages]="summary.totalPages"

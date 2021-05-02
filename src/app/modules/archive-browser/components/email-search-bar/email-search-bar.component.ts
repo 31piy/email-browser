@@ -3,6 +3,13 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
+/**
+ * Renders a search bar to search for emails.
+ *
+ * @example
+ * <app-email-search-bar (queryChanged)="onQueryChanged($event)">
+ * <app-email-search-bar>
+ */
 @Component({
   selector: 'app-email-search-bar',
   templateUrl: './email-search-bar.component.html',
