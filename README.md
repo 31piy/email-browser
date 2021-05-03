@@ -1,27 +1,42 @@
-# EmailBrowser
+# Email Archive Browser
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+This is a simple Angular app to help browsing an archive of emails. This
+app allows the users to do the following:
 
-## Development server
+1. Browse a list of email archive
+1. Plain-text search on emails' subject and body
+1. See the results in multiple pages
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Getting started
 
-## Code scaffolding
+Make sure you have the following installed on your system.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. NodeJS (latest LTS version)
+1. Git
 
-## Build
+You need to clone this repository on your system using the `git clone` command.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Installing dependencies
 
-## Running unit tests
+Run `npm install` from the app's directory to install the necessary NPM
+dependencies.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running locally (development)
 
-## Running end-to-end tests
+Run `npm start` to start the Angular server. This server by default runs on
+port 4200. Once the server has started, simply navigate to http://localhost:4200
+in your browser to see the app.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Building for production
 
-## Further help
+Run `npm run build` to build the production assets for this app. These will be
+placed in the `dist` folder. You can then serve these assets using a normal
+web server like Apache or Nginx to see the app in the browser
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Future Plans
+
+1. Adding unit tests and integration tests
+1. Responsive layout (catering to smaller/larger screens)
+1. Customizability
+1. Stats about the results
+1. Query caching
